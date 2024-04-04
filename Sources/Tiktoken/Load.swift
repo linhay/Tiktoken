@@ -83,6 +83,10 @@ private extension Load {
     
     // Fetch data
     static func fetch(stringUrl: String) async throws -> Data? {
+        if let url = URL(string: stringUrl), url.isFileURL {
+            return try? Data(contentsOf: url)
+        }
+        
         let urlHash = stringUrl.sha256
 
         // Create a URL for cache file

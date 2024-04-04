@@ -21,7 +21,13 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Tiktoken",
-            dependencies: []),
+            dependencies: [],
+            resources: [
+                .process("Resources/cl100k_base.tiktoken"),
+                .process("Resources/p50k_base.tiktoken"),
+                .process("Resources/r50k_base.tiktoken"),
+                .process("Resources/vocab.bpe")
+            ]),
         .testTarget(
             name: "TiktokenTests",
             dependencies: ["Tiktoken"]),
