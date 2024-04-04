@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CryptoKit
 
 enum Load {
     static func loadTiktokenBpe(url: String, decoder: FileDecoder = FileDecoder()) async -> [[UInt8]: Int] {
@@ -57,14 +56,6 @@ enum Load {
     }
 }
 
-private extension String {
-    var sha256: String {
-        let data = Data(self.utf8)
-        let hashed = SHA256.hash(data: data)
-        return hashed.compactMap { String(format: "%02x", $0) }.joined()
-    }
-}
-
 private extension Load {
 
     private static let cacheDirectoryURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
@@ -85,29 +76,8 @@ private extension Load {
     static func fetch(stringUrl: String) async throws -> Data? {
         if let url = URL(string: stringUrl), url.isFileURL {
             return try? Data(contentsOf: url)
-        }
-        
-        let urlHash = stringUrl.sha256
-
-        // Create a URL for cache file
-        let cacheFileURL = cacheDirectoryURL.appendingPathComponent("\(urlHash)")
-
-        // Check if the data exists in cache
-        if FileManager.default.fileExists(atPath: cacheFileURL.path) {
-            let data = try? Data(contentsOf: cacheFileURL)
-            return data
         } else {
-            guard let url = URL(string: stringUrl) else { return nil }
-            let (data, _) = try await URLSession.shared.data(from: url)
-
-            // Save data to cache
-            do {
-                try data.write(to: cacheFileURL)
-            } catch {
-                print("Error while caching: \(error)")
-            }
-
-            return data
+            return nil
         }
     }
     

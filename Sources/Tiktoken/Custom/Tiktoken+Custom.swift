@@ -8,11 +8,7 @@
 import Foundation
 
 public extension Tiktoken {
-    
-    func useLocalVocabs() {
-        Vocab.all = Vocab.allLocal
-    }
-    
+
     enum EncodeName: String {
         case gpt2 = "gpt2"
         case gpt3 = "gpt3"

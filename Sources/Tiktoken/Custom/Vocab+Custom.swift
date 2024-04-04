@@ -9,11 +9,9 @@ import Foundation
 
 public extension Vocab {
     
-    static var allLocal: [Vocab] = [.gpt2Local, .r50kBaseLocal, .p50kBaseLocal, .p50kEditLocal, .cl100kBaseLocal]
+    static var all: [Vocab] = [.gpt2, .r50kBase, .p50kBase, .p50kEdit, .cl100kBase]
 
-    
-    
-    static var gpt2Local: Vocab {
+    static var gpt2: Vocab {
         .init(name: "gpt2",
               url: Bundle.module.url(forResource: "vocab", withExtension: "bpe")!.absoluteString,
               explicitNVocab: 50257,
@@ -21,7 +19,7 @@ public extension Vocab {
               specialTokens: ["<|endoftext|>": 50256])
     }
     
-    static var r50kBaseLocal: Vocab {
+    static var r50kBase: Vocab {
         .init(name: "r50k_base",
               url: Bundle.module.url(forResource: "r50k_base", withExtension: "tiktoken")!.absoluteString,
               explicitNVocab: 50257,
@@ -29,7 +27,7 @@ public extension Vocab {
               specialTokens: ["<|endoftext|>": 50256])
     }
     
-    static var p50kBaseLocal: Vocab {
+    static var p50kBase: Vocab {
         .init(name: "p50k_base",
               url: Bundle.module.url(forResource: "p50k_base", withExtension: "tiktoken")!.absoluteString,
               explicitNVocab: 50281,
@@ -37,7 +35,7 @@ public extension Vocab {
               specialTokens: ["<|endoftext|>": 50256])
     }
     
-    static var p50kEditLocal: Vocab {
+    static var p50kEdit: Vocab {
         .init(name: "p50k_edit",
               url: Bundle.module.url(forResource: "p50k_base", withExtension: "tiktoken")!.absoluteString,
               pattern: "/'s|'t|'re|'ve|'m|'ll|'d| ?\\p{L}+| ?\\p{N}+| ?[^\\s\\p{L}\\p{N}]+|\\s+(?!\\S)|\\s+/gu",
@@ -49,7 +47,7 @@ public extension Vocab {
               ])
     }
     
-    static var cl100kBaseLocal: Vocab {
+    static var cl100kBase: Vocab {
         .init(name: "cl100k_base",
               url: Bundle.module.url(forResource: "cl100k_base", withExtension: "tiktoken")!.absoluteString,
               pattern: "/(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\\r\\n\\p{L}\\p{N}]?\\p{L}+|\\p{N}{1,3}| ?[^\\s\\p{L}\\p{N}]+[\\r\\n]*|\\s*[\\r\\n]+|\\s+(?!\\S)|\\s+/gu",

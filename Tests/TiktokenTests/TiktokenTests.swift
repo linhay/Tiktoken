@@ -4,10 +4,6 @@ import XCTest
 final class TiktokenTests: XCTestCase {
     private var sut: Tiktoken = .shared
 
-    override func setUp() async throws {
-        sut.useLocalVocabs()
-    }
-    
     func testGivenGPT2WhenDecodeThenMatch() async throws {
 //        let input = "Esto es un texto 👨🏻‍💻 con emojis diferentes 🍿💃🏼🧜‍♂️ y más texto que no tiene sentido 🛟"
 //        let expected = [22362, 78, 1658, 555, 2420, 78, 50169, 101, 8582, 237, 119, 447, 235, 8582, 240, 119, 369, 795, 13210, 271, 288, 361, 9100, 274, 12520, 235, 123, 8582, 240, 225, 8582, 237, 120, 8582, 100, 250, 447, 235, 17992, 224, 37929, 331, 285, 40138, 2420, 78, 8358, 645, 46668, 1734, 1908, 17305, 12520, 249, 253]
