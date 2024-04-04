@@ -15,7 +15,7 @@ final class TiktokenTests: XCTestCase {
         let input = "這個算法真的太棒了"
         let expected = [34460, 247, 161, 222, 233, 163, 106, 245, 37345, 243, 40367, 253, 21410, 13783, 103, 162, 96, 240, 12859, 228]
         
-        let encoder = try await sut.getEncoding("gpt2")
+        let encoder = try await sut.getEncoding(.gpt2)
         let output = try XCTUnwrap(encoder?.encode(value: input))
         XCTAssertEqual(output, expected)
     }
@@ -27,7 +27,7 @@ final class TiktokenTests: XCTestCase {
         let input = "這個算法真的太棒了"
         let expected = [11589, 247, 20022, 233, 70203, 25333, 89151, 9554, 8192, 103, 77062, 240, 35287]
         
-        let encoder = try await sut.getEncoding("gpt-4")
+        let encoder = try await sut.getEncoding(.gpt4)
         let output = try XCTUnwrap(encoder?.encode(value: input))
         XCTAssertEqual(output, expected)
     }

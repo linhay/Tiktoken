@@ -26,6 +26,7 @@ let package = Package(
                 .process("Resources/cl100k_base.tiktoken"),
                 .process("Resources/p50k_base.tiktoken"),
                 .process("Resources/r50k_base.tiktoken"),
+                .process("Resources/encoder.json"),
                 .process("Resources/vocab.bpe")
             ]),
         .testTarget(

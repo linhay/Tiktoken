@@ -9,15 +9,19 @@ import Foundation
 
 public extension Tiktoken {
     
-    func getEncoding(for vocab: Vocab, name: String, data: Data) -> Encoding? {
-        guard let regex = try? NSRegularExpression(pattern: vocab.pattern) else { return nil }
-        let encoder = Load.loadTiktokenBpe(data: data)
-        let encoding = Encoding(name: name, regex: regex, mergeableRanks: encoder, specialTokens: vocab.specialTokens)
-        return encoding
-    }
-    
     func useLocalVocabs() {
         Vocab.all = Vocab.allLocal
+    }
+    
+    enum EncodeName: String {
+        case gpt2 = "gpt2"
+        case gpt3 = "gpt3"
+        case gpt35Turbo = "gpt-3.5-turbo"
+        case gpt4 = "gpt-4"
+    }
+    
+    func getEncoding(_ name: EncodeName) async throws -> Encoding? {
+       try await self.getEncoding(name.rawValue)
     }
     
 }
